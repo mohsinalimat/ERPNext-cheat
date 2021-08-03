@@ -1,0 +1,171 @@
+********************ERPNext is an Enterprise Resource Planning (ERP) suite that leverages the power and flexibility of open-source technologies.*******************
+
+===>    Prerequisites:
+      Ubuntu 18.04 server with at least 4 GB of RAM
+      Python 3.6+
+      Node.js 14
+      Redis 5                                       (caching and real time updates)
+      MariaDB 10.3.x / Postgres 9.5.x               (to run database driven apps)
+      yarn 1.12+                                    (js dependency manager)
+      pip 20+                                       (py dependency manager)
+      wkhtmltopdf (version 0.12.5 with patched qt)  (for pdf generation)
+      cron                                          (bench's scheduled jobs: automated certificate renewal, scheduled backups)
+      NGINX                                         (proxying multitenant sites in production)
+      
+ 1)   update server:
+ 
+        $ sudo apt update
+ 
+ 2) Install Git:
+ 
+        $ sudo apt-get install git
+        
+ 3) Install Python:
+ 
+        $ sudo apt-get install python-dev
+        
+ 4) Install PIP (Python Install packages)
+ 
+        $ sudo apt-get install python-setuptools python-pip
+       
+ 5) Add the following lines to your /etc/environment file:
+
+        $ sudo nano /etc/environment
+        
+      Now add the following content:
+      
+          LC_ALL=en_US.UTF-8
+          LC_CTYPE=en_US.UTF-8
+          LANG=en_US.UTF-8
+          
+      ( press ctrl + x to save  then type y press enter to confirm)
+ 
+ 6) Reboot your server to apply all changes:
+ 
+         $ sudo reboot
+ 7) Install virtualenv:
+         
+         $ sudo apt-get install virtualenv
+         
+ 8) Install Maria DB Stabile Version:
+ 
+       you can go through the given link for install various maria db version or follow the steps to install maria db stabile version 10.2 for ubandu 18.04
+       
+       https://downloads.mariadb.org/mariadb/repositories/#mirror=piconets
+      
+      $ sudo apt-get install software-properties-common
+      $ sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+      $ sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mariadb.nethub.com.hk/repo/10.2/ubuntu bionic main'
+      $ sudo apt update
+      $ sudo apt install mariadb-server
+ 
+ During this installation you'll be prompted to set the MySQL root password. else run the following command
+     
+     $ sudo mysql_secure_installation
+
+9) installmaria db package:
+
+     $ sudo apt-get install libmysqlclient-dev
+     $ sudo service mysql restart
+     
+10) install Redis:
+     
+     $ sudo apt-get install redis-server
+
+11) install Node.js 14.X package:
+    
+    $ sudo apt-get install curl
+    $ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    $ sudo apt-get install -y nodejs
+
+12) install Yarn:
+    $ sudo npm install -g yarn
+    
+13) install wkhtmltopdf:
+    
+    $ wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.bionic_amd64.deb
+    $ sudo apt install ./wkhtmltox_0.12.6-1.bionic_amd64.deb
+    $ rm wkhtmltox_0.12.6-1.bionic_amd64.deb
+
+14) install frappe-bench:
+    
+    $ pip3 install frappe-bench
+            or 
+    $ pip install frappe-bench
+        if you are geting pip install error use the following command
+         
+         $ pip install --upgrade pip
+    restart your syatem or login again
+
+ *********** Setting Up ERPNext 12*****************
+
+15)  $ bench init [site-name]
+
+16)  $ bench remove-app frappe  #this will remove default frappe app which was installed with bench
+
+17)  $ bench get-app frappe https://github.com/frappe/frappe --branch version-12  #For frappe  if you have any repository and branch use your own instead of existing one
+
+      if we get access denide :
+          $ sudo nano /etc/ssl/certs/ca-certificates.crt
+          
+                paste the given certificate
+       
+                  -----BEGIN CERTIFICATE-----
+
+      MIIDUTCCAjkCFFpfvs/4c3Fv6kVTHnpAvSIB9ds5MA0GCSqGSIb3DQEBCwUAMGUx
+
+      CzAJBgNVBAYTAklOMQswCQYDVQQIDAJLQTELMAkGA1UEBwwCQkExETAPBgNVBAoM
+
+      CEluc3BoZXJlMQswCQYDVQQLDAJJVDEcMBoGA1UEAwwTZ2l0bGFiLmluc3BoZXJl
+
+      LmNvbTAeFw0yMDA4MDcxMjQ1MTNaFw0yNDA4MDYxMjQ1MTNaMGUxCzAJBgNVBAYT
+
+      AklOMQswCQYDVQQIDAJLQTELMAkGA1UEBwwCQkExETAPBgNVBAoMCEluc3BoZXJl
+
+      MQswCQYDVQQLDAJJVDEcMBoGA1UEAwwTZ2l0bGFiLmluc3BoZXJlLmNvbTCCASIw
+
+      DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANqXdD3H6yKGxD8XdgUz8ODlYStw
+
+      nqOkVOaUz/MebM/0iqIZH3rFSyMtX0tyZ+RxacnCxSNOHL+JHnOrVk3vp6HaB0F1
+
+      p2ze+RbVsbTpcgXyBqxrwON+W7Fg3tRarfAp2wpGJRTsvmvRXhQDJymoVirwcIEt
+
+      UEAPpxyi8zsRBMue7+wXpIhxaw2Al8iX8EUg+RG3/aqQCX0Bh/JWM2meNnDfN8R0
+
+      FcZNbFLK37eMKldmfLwS3cGZ01zom8+34z0urGeAojR5J2+G1V9bttDH+qeJrM1R
+
+      xy+UKwOzcZWTIVg5EvCX4CMngKBqGQoTPXVpJ/GTuZKl6iE9di/pJRb7e2cCAwEA
+
+      ATANBgkqhkiG9w0BAQsFAAOCAQEAbmVxtBSkE1X8vIV8rx4cP5s9+Ba0rD6ZsKkA
+
+      Zxtrj84vk1r/HNs9pKw5oTTW75VC17fwagmM8Tz88OptEutjaoUdrFSK4MgdsIqt
+
+      sd2gEOXsAWulr/w5xptW4HMM4q1YOxUVstOBzzKj2TialqZX255czC+r6Fj9cXe7
+
+      EBHG3AyVMrlt/9d9Fw+6Jk0I5y0RQNQ0OBUMQxm8BA/GBZ8vT+69bCufKr4scOl1
+
+      mlbuYy4IjvUn5bjPBYEkhV17aPWY27ERlIWD4Alt5W2TDiAH83GzKDWRfzw8YodU
+
+      8iItGhHZgfB8XacCBF5UT8CAbKse/9ki5tE/kR0iqIE37GssWw==
+
+                    -----END CERTIFICATE-----
+
+
+          
+18)  $ bench start  # Run this command open new treminal and go through following command
+
+19)  $ bench new-site [site name]
+          while installing if you get any sql permission error:
+            
+            $ sudo mysql -uroot -p'your sql password' -Bse "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;"
+
+20)  $ bench get-app erpnext https://github.com/frappe/erpnext --branch version-12 #For erpnext **read step (17)
+
+21)  $ bench --site [site-name] install-app erpnext  # Install the erpnext app in site
+
+22)  $ bench migrate  #make sure bench still running
+
+23)  $ bench --site [site-name] set-config --global developer_mode 1
+
+******************************************************************** END Thankyou ********************************************************************
+
