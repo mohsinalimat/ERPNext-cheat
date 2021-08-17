@@ -46,6 +46,8 @@
  7) Install virtualenv:
          
          $ sudo apt-get install virtualenv
+         $ alias python=python3
+         $ alias pip=pip3
          
  8) Install Maria DB Stabile Version:
  
@@ -103,52 +105,9 @@
 
 16)  $ bench remove-app frappe  #this will remove default frappe app which was installed with bench
 
-17)  $ bench get-app frappe https://github.com/frappe/frappe --branch version-12  #For frappe  if you have any repository and branch use your own instead of existing one
+17)  $ bench get-app frappe https://github.com/frappe/frappe --branch version-13  #For frappe  if you have any repository and branch use your own instead of existing one
 
-      if we get access denide :
-          $ sudo nano /etc/ssl/certs/ca-certificates.crt
-          
-                paste the given certificate
-       
-                  -----BEGIN CERTIFICATE-----
-
-      MIIDUTCCAjkCFFpfvs/4c3Fv6kVTHnpAvSIB9ds5MA0GCSqGSIb3DQEBCwUAMGUx
-
-      CzAJBgNVBAYTAklOMQswCQYDVQQIDAJLQTELMAkGA1UEBwwCQkExETAPBgNVBAoM
-
-      CEluc3BoZXJlMQswCQYDVQQLDAJJVDEcMBoGA1UEAwwTZ2l0bGFiLmluc3BoZXJl
-
-      LmNvbTAeFw0yMDA4MDcxMjQ1MTNaFw0yNDA4MDYxMjQ1MTNaMGUxCzAJBgNVBAYT
-
-      AklOMQswCQYDVQQIDAJLQTELMAkGA1UEBwwCQkExETAPBgNVBAoMCEluc3BoZXJl
-
-      MQswCQYDVQQLDAJJVDEcMBoGA1UEAwwTZ2l0bGFiLmluc3BoZXJlLmNvbTCCASIw
-
-      DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANqXdD3H6yKGxD8XdgUz8ODlYStw
-
-      nqOkVOaUz/MebM/0iqIZH3rFSyMtX0tyZ+RxacnCxSNOHL+JHnOrVk3vp6HaB0F1
-
-      p2ze+RbVsbTpcgXyBqxrwON+W7Fg3tRarfAp2wpGJRTsvmvRXhQDJymoVirwcIEt
-
-      UEAPpxyi8zsRBMue7+wXpIhxaw2Al8iX8EUg+RG3/aqQCX0Bh/JWM2meNnDfN8R0
-
-      FcZNbFLK37eMKldmfLwS3cGZ01zom8+34z0urGeAojR5J2+G1V9bttDH+qeJrM1R
-
-      xy+UKwOzcZWTIVg5EvCX4CMngKBqGQoTPXVpJ/GTuZKl6iE9di/pJRb7e2cCAwEA
-
-      ATANBgkqhkiG9w0BAQsFAAOCAQEAbmVxtBSkE1X8vIV8rx4cP5s9+Ba0rD6ZsKkA
-
-      Zxtrj84vk1r/HNs9pKw5oTTW75VC17fwagmM8Tz88OptEutjaoUdrFSK4MgdsIqt
-
-      sd2gEOXsAWulr/w5xptW4HMM4q1YOxUVstOBzzKj2TialqZX255czC+r6Fj9cXe7
-
-      EBHG3AyVMrlt/9d9Fw+6Jk0I5y0RQNQ0OBUMQxm8BA/GBZ8vT+69bCufKr4scOl1
-
-      mlbuYy4IjvUn5bjPBYEkhV17aPWY27ERlIWD4Alt5W2TDiAH83GzKDWRfzw8YodU
-
-      8iItGhHZgfB8XacCBF5UT8CAbKse/9ki5tE/kR0iqIE37GssWw==
-
-                    -----END CERTIFICATE-----
+     
 
 
           
@@ -159,7 +118,7 @@
             
             $ sudo mysql -uroot -p'your sql password' -Bse "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION;"
 
-20)  $ bench get-app erpnext https://github.com/frappe/erpnext --branch version-12 #For erpnext **read step (17)
+20)  $ bench get-app erpnext https://github.com/frappe/erpnext --branch version-13 #For erpnext **read step (17)
 
 21)  $ bench --site [site-name] install-app erpnext  # Install the erpnext app in site
 
