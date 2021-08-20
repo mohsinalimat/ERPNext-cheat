@@ -188,3 +188,6 @@ sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ubuntu-tw.org/
 sudo apt-get update
 sudo apt-get install mariadb-server-10.3
 
+
+
+ref https://github.com/D-codE-Hub/ERPNext-installation-Guide
